@@ -28,4 +28,32 @@ export class AuthService {
 
         return { user: userObj, token };
     }
+
+    async login(data: Partial<IUser>) {
+        const { email, password } = data;
+        if (!email || !password) {
+            throw new Error('Missing email or password');
+        }
+
+        const user = await User.findOne({ email });
+        if (!user || !user.password) {
+            const error: any = new Error('Invalid email or password');
+            error.statusCode = 401;
+            throw error;
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            const error: any = new Error('Invalid email or password');
+            error.statusCode = 401;
+            throw error;
+        }
+
+        const token = jwt.sign({ id: user._id, role: user.role }, SECRET_KEY, { expiresIn: '1h' });
+
+        const userObj = user.toObject();
+        delete userObj.password;
+
+        return { user: userObj, token };
+    }
 }
