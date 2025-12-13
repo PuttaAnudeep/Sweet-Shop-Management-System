@@ -80,7 +80,7 @@ Authorization: Bearer {{loginAdmin.response.body.token}}
 
 ### Update Sweet (Admin Only)
 # Replace 'sweet_id_here' with an actual ID from the List response
-PUT http://localhost:5000/api/sweets/REPLACE_WITH_SWEET_ID
+PUT http://localhost:5000/api/sweets/693daddd534df4558ca3e5b4
 Authorization: Bearer {{loginAdmin.response.body.token}}
 Content-Type: application/json
 
@@ -89,4 +89,22 @@ Content-Type: application/json
   "price": 60,
   "quantity": 90
 }
+
+### Purchase Inventory (Add Stock) - Admin Only
+POST http://localhost:5000/api/inventory
+Authorization: Bearer {{loginAdmin.response.body.token}}
+Content-Type: application/json
+
+{
+  "sweetId": "693daddd534df4558ca3e5b4",
+  "quantity": 100,
+  "costPrice": 5,
+  "supplier": "Cocoa Wholesale Ltd"
+}
+
+### Verify Stock Update (Get Sweet Details)
+# Use the same sweetId as above to check if quantity increased
+GET http://localhost:5000/api/sweets?search=Updated
+# Or generic list
+# GET http://localhost:5000/api/sweets
 

@@ -20,7 +20,7 @@ export class InventoryService {
         await log.save();
 
         // Update Sweet quantity
-        sweet.quantity += quantity;
+        sweet.quantity = Number(sweet.quantity) + Number(quantity);
         await sweet.save();
 
         return log;
