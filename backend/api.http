@@ -75,7 +75,7 @@ GET http://localhost:5000/api/sweets?category=Bengali
 ### Delete Sweet (Admin Only)
 # Replace 'sweet_id_here' with an actual ID from the List response
 # @name deleteSweet
-DELETE http://localhost:5000/api/sweets/693da751505fd5e4ca991103
+DELETE http://localhost:5000/api/sweets/693daddd534df4558ca3e5b4
 Authorization: Bearer {{loginAdmin.response.body.token}}
 
 ### Update Sweet (Admin Only)
@@ -104,7 +104,25 @@ Content-Type: application/json
 
 ### Verify Stock Update (Get Sweet Details)
 # Use the same sweetId as above to check if quantity increased
-GET http://localhost:5000/api/sweets?search=Updated
-# Or generic list
+GET http://localhost:5000/api/sweets?search=693daddd534df4558ca3e5b4
 # GET http://localhost:5000/api/sweets
+
+### Add to Cart (Customer)
+POST http://localhost:5000/api/cart
+Authorization: Bearer {{loginCustomer.response.body.token}}
+Content-Type: application/json
+
+{
+  "sweetId": "693daddd534df4558ca3e5b4",
+  "quantity": 2
+}
+
+### Get Cart (Customer)
+GET http://localhost:5000/api/cart
+Authorization: Bearer {{loginCustomer.response.body.token}}
+
+### Remove from Cart (Customer)
+# Replace sweetId with actual ID from Get Cart response
+DELETE http://localhost:5000/api/cart/693daddd534df4558ca3e5b4
+Authorization: Bearer {{loginCustomer.response.body.token}}
 
