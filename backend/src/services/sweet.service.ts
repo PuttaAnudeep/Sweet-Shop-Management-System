@@ -23,4 +23,8 @@ export class SweetService {
     async delete(id: string) {
         return await Sweet.findByIdAndDelete(id);
     }
+
+    async update(id: string, data: Partial<ISweet>) {
+        return await Sweet.findByIdAndUpdate(id, data, { new: true });
+    }
 }

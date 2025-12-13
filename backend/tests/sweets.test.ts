@@ -133,4 +133,46 @@ describe('Sweets Management', () => {
             expect(res.status).toBe(403);
         });
     });
+    describe('PUT /api/sweets/:id', () => {
+        let sweetToUpdate: any;
+
+        beforeEach(async () => {
+            sweetToUpdate = new Sweet({ name: 'Old Name', category: 'Old Cat', price: 10, quantity: 5 });
+            await sweetToUpdate.save();
+        });
+
+        it('should allow admin to update a sweet', async () => {
+            const res = await request(app)
+                .put(`/api/sweets/${sweetToUpdate._id}`)
+                .set('Authorization', `Bearer ${adminToken}`)
+                .send({
+                    name: 'New Name',
+                    price: 20
+                });
+
+            expect(res.status).toBe(200);
+            expect(res.body.name).toBe('New Name');
+            expect(res.body.price).toBe(20);
+
+            const updatedSweet = await Sweet.findById(sweetToUpdate._id);
+            expect(updatedSweet?.name).toBe('New Name');
+            expect(updatedSweet?.price).toBe(20);
+        });
+
+        it('should return 404 if sweet not found', async () => {
+            const res = await request(app)
+                .put(`/api/sweets/5f8d0d55b54764421b7156c9`) // Random valid ID
+                .set('Authorization', `Bearer ${adminToken}`)
+                .send({ name: 'New Name' });
+            expect(res.status).toBe(404);
+        });
+
+        it('should fail if user is not admin', async () => {
+            const res = await request(app)
+                .put(`/api/sweets/${sweetToUpdate._id}`)
+                .set('Authorization', `Bearer ${customerToken}`)
+                .send({ name: 'New Name' });
+            expect(res.status).toBe(403);
+        });
+    });
 });

@@ -34,3 +34,17 @@ export const deleteSweet = async (req: Request, res: Response, next: NextFunctio
         next(error);
     }
 };
+
+export const updateSweet = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const sweet = await sweetService.update(req.params.id, req.body);
+        if (!sweet) {
+            const error: any = new Error('Sweet not found');
+            error.statusCode = 404;
+            throw error;
+        }
+        res.status(200).json(sweet);
+    } catch (error) {
+        next(error);
+    }
+};
