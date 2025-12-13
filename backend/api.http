@@ -1,0 +1,23 @@
+### Register a new User
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "manual_test@example.com",
+  "password": "securepassword123"
+}
+
+### Login
+# @name login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "manual_test@example.com",
+  "password": "securepassword123"
+}
+
+### (Example) Get Sweets (Protected)
+# You will use the token from the login response here
+GET http://localhost:5000/api/sweets
+Authorization: Bearer {{login.response.body.token}}

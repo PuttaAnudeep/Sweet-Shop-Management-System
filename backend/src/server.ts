@@ -19,6 +19,7 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 import authRoutes from './routes/auth.routes';
+import sweetRoutes from './routes/sweet.routes';
 import { errorHandler } from './middleware/error.middleware';
 
 app.use(helmet());
@@ -26,6 +27,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/sweets', sweetRoutes);
 
 app.use(errorHandler);
 
