@@ -20,6 +20,7 @@ if (process.env.NODE_ENV !== 'test') {
 
 import authRoutes from './routes/auth.routes';
 import sweetRoutes from './routes/sweet.routes';
+import inventoryRoutes from './routes/inventory.routes';
 import { errorHandler } from './middleware/error.middleware';
 
 app.use(helmet());
@@ -28,6 +29,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/sweets', sweetRoutes);
+app.use('/api/inventory', inventoryRoutes);
 
 app.use(errorHandler);
 
