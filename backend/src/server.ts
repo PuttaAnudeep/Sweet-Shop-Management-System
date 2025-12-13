@@ -22,6 +22,7 @@ import authRoutes from './routes/auth.routes';
 import sweetRoutes from './routes/sweet.routes';
 import inventoryRoutes from './routes/inventory.routes';
 import cartRoutes from './routes/cart.routes';
+import orderRoutes from './routes/order.routes';
 import { errorHandler } from './middleware/error.middleware';
 
 app.use(helmet());
@@ -32,6 +33,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/sweets', sweetRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/orders', orderRoutes);
 
 app.use(errorHandler);
 

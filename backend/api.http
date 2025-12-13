@@ -28,7 +28,7 @@ Content-Type: application/json
   "password": "adminpassword123"
 }
 ### Login Customer
- #@name loginCustomer
+# @name loginCustomer
 POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
@@ -113,7 +113,7 @@ Authorization: Bearer {{loginCustomer.response.body.token}}
 Content-Type: application/json
 
 {
-  "sweetId": "693daddd534df4558ca3e5b4",
+  "sweetId": "693da762505fd5e4ca991105",
   "quantity": 2
 }
 
@@ -125,4 +125,14 @@ Authorization: Bearer {{loginCustomer.response.body.token}}
 # Replace sweetId with actual ID from Get Cart response
 DELETE http://localhost:5000/api/cart/693daddd534df4558ca3e5b4
 Authorization: Bearer {{loginCustomer.response.body.token}}
+
+### Place Order (Checkout)
+POST http://localhost:5000/api/orders
+Authorization: Bearer {{loginCustomer.response.body.token}}
+Content-Type: application/json
+
+{}
+
+### Verify Stock After Order
+GET http://localhost:5000/api/sweets?search=693da762505fd5e4ca991105
 
