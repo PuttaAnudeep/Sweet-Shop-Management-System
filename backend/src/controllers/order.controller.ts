@@ -14,3 +14,12 @@ export const placeOrder = async (req: any, res: Response, next: NextFunction) =>
         next(error);
     }
 };
+
+export const getOrderHistory = async (req: any, res: Response, next: NextFunction) => {
+    try {
+        const orders = await orderService.getUserOrders(req.user.id);
+        res.status(200).json({ success: true, orders });
+    } catch (error: any) {
+        next(error);
+    }
+};

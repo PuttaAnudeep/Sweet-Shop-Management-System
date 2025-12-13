@@ -78,8 +78,29 @@ describe('Order Processing', () => {
                 .post('/api/orders')
                 .set('Authorization', `Bearer ${customerToken}`);
 
-            expect(res.status).toBe(400); // Or 409 Conflict
+            expect(res.status).toBe(400);
             expect(res.body.message).toMatch(/insufficient stock/i);
+        });
+    });
+
+    describe('GET /api/orders', () => {
+        it('should return list of orders for the user', async () => {
+            // Create a dummy order
+            const order = new Order({
+                userId: user._id,
+                items: [{ sweetId: sweet._id, quantity: 1, price: 10 }],
+                totalAmount: 10
+            });
+            await order.save();
+
+            const res = await request(app)
+                .get('/api/orders')
+                .set('Authorization', `Bearer ${customerToken}`);
+
+            expect(res.status).toBe(200);
+            expect(res.body.orders).toHaveLength(1);
+            expect(res.body.orders[0].totalAmount).toBe(10);
+            expect(res.body.orders[0].items[0].sweetId).toBeDefined();
         });
     });
 });

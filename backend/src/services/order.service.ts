@@ -59,4 +59,10 @@ export class OrderService {
             throw error;
         }
     }
+
+    async getUserOrders(userId: string) {
+        return await Order.find({ userId })
+            .populate('items.sweetId')
+            .sort({ createdAt: -1 });
+    }
 }
