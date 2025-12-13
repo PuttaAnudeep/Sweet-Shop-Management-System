@@ -101,5 +101,36 @@ describe('Sweets Management', () => {
             expect(res.body.length).toBe(2);
         });
     });
+    describe('DELETE /api/sweets/:id', () => {
+        let sweetToDelete: any;
+
+        beforeEach(async () => {
+            sweetToDelete = new Sweet({ name: 'To Delete', category: 'Misc', price: 10, quantity: 1 });
+            await sweetToDelete.save();
+        });
+
+        it('should allow admin to delete a sweet', async () => {
+            const res = await request(app)
+                .delete(`/api/sweets/${sweetToDelete._id}`)
+                .set('Authorization', `Bearer ${adminToken}`);
+
+            expect(res.status).toBe(200);
+            const check = await Sweet.findById(sweetToDelete._id);
+            expect(check).toBeNull();
+        });
+
+        it('should return 404 if sweet not found', async () => {
+            const res = await request(app)
+                .delete(`/api/sweets/5f8d0d55b54764421b7156c9`) // Random valid ID
+                .set('Authorization', `Bearer ${adminToken}`);
+            expect(res.status).toBe(404);
+        });
+
+        it('should fail if user is not admin', async () => {
+            const res = await request(app)
+                .delete(`/api/sweets/${sweetToDelete._id}`)
+                .set('Authorization', `Bearer ${customerToken}`);
+            expect(res.status).toBe(403);
+        });
+    });
 });
-```

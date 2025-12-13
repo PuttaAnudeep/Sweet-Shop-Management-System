@@ -6,7 +6,7 @@ const SECRET_KEY = process.env.JWT_SECRET || 'secret';
 
 export class AuthService {
     async register(data: Partial<IUser>) {
-        const { email, password } = data;
+        const { email, password, role } = data;
         if (!email || !password) {
             throw new Error('Missing email or password');
         }
@@ -17,7 +17,7 @@ export class AuthService {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new User({ email, password: hashedPassword });
+        const user = new User({ email, password: hashedPassword, role: role || 'customer' });
         await user.save();
 
         const token = jwt.sign({ id: user._id, role: user.role }, SECRET_KEY, { expiresIn: '1h' });

@@ -21,6 +21,19 @@ describe('Auth Module', () => {
             expect(res.body).toHaveProperty('user');
             expect(res.body.user.email).toBe('test@example.com');
         });
+
+        it('should register a new admin user', async () => {
+            const res = await request(app)
+                .post('/api/auth/register')
+                .send({
+                    email: 'admin@test.com',
+                    password: 'password123',
+                    role: 'admin'
+                });
+
+            expect(res.status).toBe(201);
+            expect(res.body.user.role).toBe('admin');
+        });
     });
 
     describe('POST /api/auth/login', () => {

@@ -1,23 +1,80 @@
-### Register a new User
+### Register a new User (Customer)
 POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "manual_test@example.com",
-  "password": "securepassword123"
+  "email": "customer@example.com",
+  "password": "password123",
+  "role": "customer"
 }
 
-### Login
-# @name login
+### Register a new User (Admin)
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "admin_v2@example.com",
+  "password": "adminpassword123",
+  "role": "admin"
+}
+
+### Login Admin
+# @name loginAdmin
 POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "manual_test@example.com",
-  "password": "securepassword123"
+  "email": "admin_v2@example.com",
+  "password": "adminpassword123"
+}
+### Login Customer
+ #@name loginCustomer
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "customer@example.com",
+  "password": "password123"
 }
 
-### (Example) Get Sweets (Protected)
-# You will use the token from the login response here
+### Add Sweet (Admin Only)
+POST http://localhost:5000/api/sweets
+Authorization: Bearer {{loginAdmin.response.body.token}}
+Content-Type: application/json
+
+{
+  "name": "Chocolate Truffle",
+  "category": "Chocolate",
+  "price": 50,
+  "quantity": 100,
+  "description": "Rich dark chocolate truffles",
+  "image": "http://example.com/truffle.jpg"
+}
+
+### Add Another Sweet (Admin Only)
+POST http://localhost:5000/api/sweets
+Authorization: Bearer {{loginAdmin.response.body.token}}
+Content-Type: application/json
+
+{
+  "name": "Rasgulla",
+  "category": "Bengali",
+  "price": 20,
+  "quantity": 200
+}
+
+### List All Sweets
 GET http://localhost:5000/api/sweets
-Authorization: Bearer {{login.response.body.token}}
+
+### Search Sweets by Name
+GET http://localhost:5000/api/sweets?search=Chocolate
+
+### Filter Sweets by Category
+GET http://localhost:5000/api/sweets?category=Bengali
+
+### Delete Sweet (Admin Only)
+# Replace 'sweet_id_here' with an actual ID from the List response
+# @name deleteSweet
+DELETE http://localhost:5000/api/sweets/REPLACE_WITH_SWEET_ID
+Authorization: Bearer {{loginAdmin.response.body.token}}
+
