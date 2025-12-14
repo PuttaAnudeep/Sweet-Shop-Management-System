@@ -15,6 +15,31 @@ export const placeOrder = async (req: any, res: Response, next: NextFunction) =>
     }
 };
 
+import { PaymentService } from '../services/payment.service';
+const paymentService = new PaymentService();
+
+export const checkout = async (req: any, res: Response, next: NextFunction) => {
+    try {
+        const session = await paymentService.createCheckoutSession(req.user.id);
+        res.status(200).json({ success: true, sessionId: session.id, url: session.url });
+    } catch (error: any) {
+        next(error);
+    }
+};
+
+export const handleSuccess = async (req: any, res: Response, next: NextFunction) => {
+    try {
+        const { session_id } = req.query;
+        if (!session_id) {
+            throw new Error('Missing session_id');
+        }
+        const order = await paymentService.handlePaymentSuccess(session_id as string);
+        res.status(200).json({ success: true, message: 'Payment Successful. Order Placed.', order });
+    } catch (error: any) {
+        next(error);
+    }
+};
+
 export const getOrderHistory = async (req: any, res: Response, next: NextFunction) => {
     try {
         const orders = await orderService.getUserOrders(req.user.id);

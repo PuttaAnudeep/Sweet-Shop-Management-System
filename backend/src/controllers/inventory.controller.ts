@@ -17,9 +17,6 @@ export const purchaseInventory = async (req: Request, res: Response, next: NextF
         const log = await inventoryService.addStock({ sweetId, quantity, costPrice, supplier });
         res.status(201).json({ success: true, data: log });
     } catch (error: any) {
-        if (error.message === 'Sweet not found') {
-            error.statusCode = 404;
-        }
         next(error);
     }
 };

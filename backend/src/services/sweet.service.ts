@@ -2,6 +2,14 @@ import Sweet, { ISweet } from '../models/Sweet';
 
 export class SweetService {
     async create(data: Partial<ISweet>) {
+        const { name } = data;
+        const existingSweet = await Sweet.findOne({ name: { $regex: new RegExp(`^${name}$`, 'i') } });
+        if (existingSweet) {
+            const error: any = new Error('Sweet with this name already exists');
+            error.statusCode = 409;
+            throw error;
+        }
+
         const sweet = new Sweet(data);
         return await sweet.save();
     }

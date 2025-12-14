@@ -1,4 +1,5 @@
 import Cart, { ICartItem } from '../models/Cart';
+import Sweet from '../models/Sweet';
 
 export class CartService {
     async getCart(userId: string) {
@@ -11,6 +12,28 @@ export class CartService {
     }
 
     async addToCart(userId: string, item: ICartItem) {
+        if (item.quantity <= 0) {
+            const error: any = new Error('Quantity must be greater than 0');
+            error.statusCode = 400;
+            throw error;
+        }
+
+        // Verify Sweet Exists
+        const sweet = await import('../models/Sweet').then(m => m.default.findById(item.sweetId)); // Dynamic import to avoid circular dependency if any, or just import at top.
+        // Actually, let's just use the model. I need to make sure Sweet is imported.
+        // I will fix imports in a moment.
+        if (!sweet) {
+            const error: any = new Error('Sweet not found');
+            error.statusCode = 404;
+            throw error;
+        }
+
+        if (sweet.quantity < item.quantity) {
+            const error: any = new Error(`Insufficient stock. Available: ${sweet.quantity}`);
+            error.statusCode = 400;
+            throw error;
+        }
+
         let cart = await Cart.findOne({ userId });
         if (!cart) {
             cart = new Cart({ userId, items: [] });
@@ -19,6 +42,13 @@ export class CartService {
         const existingItemIndex = cart.items.findIndex(p => p.sweetId.toString() === item.sweetId.toString());
 
         if (existingItemIndex > -1) {
+            // Check if total quantity exceeds stock
+            const newTotal = cart.items[existingItemIndex].quantity + item.quantity;
+            if (sweet.quantity < newTotal) {
+                const error: any = new Error(`Insufficient stock. Available: ${sweet.quantity}, You already have: ${cart.items[existingItemIndex].quantity} in cart.`);
+                error.statusCode = 400;
+                throw error;
+            }
             // Update quantity
             cart.items[existingItemIndex].quantity += item.quantity;
         } else {

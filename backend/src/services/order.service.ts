@@ -4,7 +4,7 @@ import Sweet from '../models/Sweet';
 import mongoose from 'mongoose';
 
 export class OrderService {
-    async createOrder(userId: string) {
+    async createOrder(userId: string, paymentId?: string) {
         // 1. Get User's Cart
         const cart = await Cart.findOne({ userId }).populate('items.sweetId');
         if (!cart || cart.items.length === 0) {
@@ -17,35 +17,40 @@ export class OrderService {
             let totalAmount = 0;
             const orderItems = [];
 
-            // 2. Validate Stock and Deduct
+            // 2. Validate Stock (Pre-check all items to avoid partial updates)
             for (const item of cart.items) {
                 const sweet = await Sweet.findById(item.sweetId);
-
                 if (!sweet) {
                     throw new Error(`Sweet not found: ${item.sweetId}`);
                 }
-
                 if (sweet.quantity < item.quantity) {
-                    throw new Error(`Insufficient stock for sweet: ${sweet.name}`);
+                    throw new Error(`Insufficient stock for sweet: ${sweet.name}. Available: ${sweet.quantity}, Requested: ${item.quantity}`);
                 }
+            }
 
-                sweet.quantity -= item.quantity;
+            // 3. Deduct Stock and Prepare Order Items
+            for (const item of cart.items) {
+                const sweet = await Sweet.findById(item.sweetId);
+                if (sweet) { // Should exist due to check above, but safe mapping
+                    sweet.quantity -= item.quantity;
+                    await sweet.save();
 
-                await sweet.save();
-
-                totalAmount += sweet.price * item.quantity;
-                orderItems.push({
-                    sweetId: sweet._id,
-                    quantity: item.quantity,
-                    price: sweet.price
-                });
+                    totalAmount += sweet.price * item.quantity;
+                    orderItems.push({
+                        sweetId: sweet._id,
+                        quantity: item.quantity,
+                        price: sweet.price
+                    });
+                }
             }
 
             // 3. Create Order
             const order = new Order({
                 userId,
                 items: orderItems,
-                totalAmount
+                totalAmount,
+                paymentId,
+                status: 'completed'
             });
             await order.save();
 

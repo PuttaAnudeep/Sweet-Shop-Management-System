@@ -5,6 +5,12 @@ const sweetService = new SweetService();
 
 export const createSweet = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const { price, quantity } = req.body;
+        if (price < 0 || quantity < 0) {
+            const error: any = new Error('Price and Quantity cannot be negative');
+            error.statusCode = 400;
+            throw error;
+        }
         const sweet = await sweetService.create(req.body);
         res.status(201).json(sweet);
     } catch (error) {
@@ -37,6 +43,12 @@ export const deleteSweet = async (req: Request, res: Response, next: NextFunctio
 
 export const updateSweet = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const { price, quantity } = req.body;
+        if ((price !== undefined && price < 0) || (quantity !== undefined && quantity < 0)) {
+            const error: any = new Error('Price and Quantity cannot be negative');
+            error.statusCode = 400;
+            throw error;
+        }
         const sweet = await sweetService.update(req.params.id, req.body);
         if (!sweet) {
             const error: any = new Error('Sweet not found');

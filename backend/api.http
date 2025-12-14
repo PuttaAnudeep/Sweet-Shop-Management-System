@@ -126,12 +126,20 @@ Authorization: Bearer {{loginCustomer.response.body.token}}
 DELETE http://localhost:5000/api/cart/693daddd534df4558ca3e5b4
 Authorization: Bearer {{loginCustomer.response.body.token}}
 
-### Place Order (Checkout)
+### Place Order (Direct - No Payment)
 POST http://localhost:5000/api/orders
 Authorization: Bearer {{loginCustomer.response.body.token}}
 Content-Type: application/json
 
 {}
+
+### Stripe Checkout (Use this for Payment)
+POST http://localhost:5000/api/orders/checkout
+Authorization: Bearer {{loginCustomer.response.body.token}}
+
+### Stripe Success (Manual Test)
+# You need to paste the actual session_id from the checkout response manually to test this if you want to bypass browser
+# GET http://localhost:5000/api/orders/success?session_id=cs_test_...
 
 ### Verify Stock After Order
 GET http://localhost:5000/api/sweets?search=693da762505fd5e4ca991105
