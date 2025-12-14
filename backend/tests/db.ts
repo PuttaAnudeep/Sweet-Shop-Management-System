@@ -7,8 +7,10 @@ let mongo: MongoMemoryServer;
  * Connect to the in-memory database.
  */
 export const connect = async () => {
-    mongo = await MongoMemoryServer.create();
-    const uri = mongo.getUri();
+    // mongo = await MongoMemoryServer.create();
+    // const uri = mongo.getUri();
+    // Use local test database to avoid downloading binary
+    const uri = 'mongodb://localhost:27017/sweetshop_test';
     await mongoose.connect(uri);
 };
 
@@ -16,9 +18,11 @@ export const connect = async () => {
  * Drop database, close the connection and stop mongod.
  */
 export const closeDatabase = async () => {
-    if (mongo) {
+    if (mongoose.connection) {
         await mongoose.connection.dropDatabase();
         await mongoose.connection.close();
+    }
+    if (mongo) {
         await mongo.stop();
     }
 };
