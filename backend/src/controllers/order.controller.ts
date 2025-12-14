@@ -42,8 +42,11 @@ export const handleSuccess = async (req: any, res: Response, next: NextFunction)
 
 export const getOrderHistory = async (req: any, res: Response, next: NextFunction) => {
     try {
-        const orders = await orderService.getUserOrders(req.user.id);
-        res.status(200).json({ success: true, orders });
+        const page = parseInt(req.query.page as string) || 1;
+        const limit = parseInt(req.query.limit as string) || 5;
+
+        const result = await orderService.getUserOrders(req.user.id, page, limit);
+        res.status(200).json({ success: true, ...result });
     } catch (error: any) {
         next(error);
     }

@@ -58,4 +58,28 @@ export class AuthService {
 
         return { user: userObj, token };
     }
+
+    async updateProfile(userId: string, data: Partial<IUser>) {
+        const { name, email, password } = data;
+        const user = await User.findById(userId);
+
+        if (!user) {
+            const error: any = new Error('User not found');
+            error.statusCode = 404;
+            throw error;
+        }
+
+        if (name) user.name = name;
+        if (email) user.email = email;
+        if (password) {
+            user.password = await bcrypt.hash(password, 10);
+        }
+
+        await user.save();
+
+        const userObj = user.toObject();
+        delete userObj.password;
+
+        return userObj;
+    }
 }

@@ -14,9 +14,16 @@
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   @apply bg-chocolate-400/50 rounded-full hover:bg-chocolate-500/70;
+}
+
+/* Custom Text Selection */
+::selection {
+  @apply bg-gold-500 text-white;
 }

@@ -65,9 +65,21 @@ export class OrderService {
         }
     }
 
-    async getUserOrders(userId: string) {
-        return await Order.find({ userId })
+    async getUserOrders(userId: string, page: number = 1, limit: number = 5) {
+        const skip = (page - 1) * limit;
+        const orders = await Order.find({ userId })
             .populate('items.sweetId')
-            .sort({ createdAt: -1 });
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit);
+
+        const totalOrders = await Order.countDocuments({ userId });
+
+        return {
+            orders,
+            totalOrders,
+            totalPages: Math.ceil(totalOrders / limit),
+            currentPage: page
+        };
     }
 }

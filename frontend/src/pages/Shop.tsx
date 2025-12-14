@@ -83,13 +83,9 @@ const Shop = () => {
                         onChange={(e) => { setCategory(e.target.value); setCurrentPage(1); }}
                     >
                         <option value="">All Categories</option>
-                        <option value="Bengali Sweets">Bengali Sweets</option>
-                        <option value="Traditional">Traditional</option>
-                        <option value="Ghee Sweets">Ghee Sweets</option>
-                        <option value="Milk Sweets">Milk Sweets</option>
-                        <option value="Dry Fruit Sweets">Dry Fruit Sweets</option>
-                        <option value="Syrup Sweets">Syrup Sweets</option>
-                        <option value="Halwa">Halwa</option>
+                        {['Bengali Sweets', 'Traditional', 'Ghee Sweets', 'Milk Sweets', 'Dry Fruit Sweets', 'Syrup Sweets', 'Halwa'].map((cat) => (
+                            <option key={cat} value={cat}>{cat}</option>
+                        ))}
                     </select>
                 </div>
             </div>
