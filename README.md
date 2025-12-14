@@ -47,7 +47,7 @@ Clone the repository to your local machine.
 3.  Create a `.env` file in the `backend` directory with the following variables:
     Use the below drive link for backend .env file (To view the file use the link):
     
-    **link: https://drive.google.com/file/d/1nSi9NG8jG2fgKs1cjVfiqEAfVbYb2aoG/view?usp=sharing**
+    **link: https://drive.google.com/file/d/1q9ASvVrnGiIfuIEmuiOxHNAv640tVvQJ/view?usp=sharing**
 4.  (Optional) Seed the database with initial data:(If the mongouri changes then run this command)
     ```bash
     npm run seed
@@ -57,6 +57,17 @@ Clone the repository to your local machine.
     npm run dev
     ```
     The server should start on `http://localhost:5000`.
+
+note:use stripe test card details(for payment through stripe)
+**card number:** 4242 4242 4242 4242
+**exp month:** 12
+**exp year:** 34
+**cvc:** 567
+**Name on card:Zhang San**
+**Country:United States**
+**City:New York**
+**Address:123 Main St**
+**Postal Code:12345**
 
 ### 3. Frontend Setup
 
@@ -93,6 +104,10 @@ Clone the repository to your local machine.
 ## My Test reports:
     use this link to view the test reports:
     **link:https://docs.google.com/document/d/1yuCL1ug_SP6zcpjl5CNbjxUA86zlAJIJosik73OBY9s/edit?usp=sharing**
+
+## Application Demo Video:
+    use this link to view the demo video:
+    **link:https://drive.google.com/file/d/1NsyjOotPY786WiT21Ddj273y2IZQ3h4J/view?usp=sharing**
 
 ## Application WorkFlow Screenshots:
 

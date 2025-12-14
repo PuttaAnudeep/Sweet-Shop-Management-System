@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
     apiVersion: '2024-12-18.acacia' as any
 });
 
-const CLIENT_URL = 'http://localhost:5173/success';
+const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173/success';
 
 export class PaymentService {
     private orderService: OrderService;
