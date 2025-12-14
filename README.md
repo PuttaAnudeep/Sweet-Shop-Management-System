@@ -10,6 +10,7 @@ and clean code practices by committing to the best practices of software develop
 -   **User Authentication**: Secure Login and Registration for Customers and Admins.
 -   **Role-Based Access Control**: Protected Admin routes and dashboard.
 -   **sweet Management**: Admins can view, edit, delete, and restock sweets.
+-  **admin analytics**: Admins can view analytics of the shop.
 -   **User Interface**: Customers can browse sweets with filtering and search capabilities.
 -   **Shopping Cart**: Add items to cart and manage quantities.
 -   **Payment Integration**: Secure payment processing using Stripe.
@@ -47,7 +48,7 @@ Clone the repository to your local machine.
     Use the below drive link for backend .env file (To view the file use the link):
     
     **link: https://drive.google.com/file/d/1nSi9NG8jG2fgKs1cjVfiqEAfVbYb2aoG/view?usp=sharing**
-4.  (Optional) Seed the database with initial data:
+4.  (Optional) Seed the database with initial data:(If the mongouri changes then run this command)
     ```bash
     npm run seed
     ```
