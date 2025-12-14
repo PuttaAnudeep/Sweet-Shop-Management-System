@@ -94,6 +94,68 @@ Clone the repository to your local machine.
     use this link to view the test reports:
     **link:https://docs.google.com/document/d/1yuCL1ug_SP6zcpjl5CNbjxUA86zlAJIJosik73OBY9s/edit?usp=sharing**
 
+## Application WorkFlow Screenshots:
+
+### 1. Landing Page
+![Landing Page](frontend/public/workflow%20Screenshot/1.Landing%20Page.png)
+The landing page serves as the entry point, featuring a captivating hero section and highlighting premium sweets to attract customers.
+
+### 2. Full Home Page
+![Full Home Page](frontend/public/workflow%20Screenshot/2.Full%20Home%20Page.png)
+A complete overview of the home page, showcasing the brand identity and navigation options.
+
+### 3. Shop Page
+![Shop Page](frontend/public/workflow%20Screenshot/3.Shop%20Page.png)
+The main shopping area where customers can browse the full catalog, filter by category, and search for specific sweets.
+
+### 4. Sign Up Page
+![Sign Up Page](frontend/public/workflow%20Screenshot/4.SIgnUp%20Page.png)
+Registration page for new users to create an account and access personalized features.
+
+### 5. Login Page
+![Login Page](frontend/public/workflow%20Screenshot/5.Login%20Page.png)
+Secure login interface for existing customers and administrators to access their accounts.
+
+### 6. Admin Analytics Dashboard
+![Admin Analytics Dashboard](frontend/public/workflow%20Screenshot/6.Admin%20Analytics%20Dashboard.png)
+A comprehensive dashboard for admins to view real-time statistics, revenue metrics, and inventory insights.
+
+### 7. Admin Manage Sweets
+![Admin Manage Sweets](frontend/public/workflow%20Screenshot/8.Admin%20Manage%20Sweet.png)
+Inventory management interface allowing admins to view, edit, and delete sweet listings.
+
+### 8. Add New Sweet
+![Add New Sweet](frontend/public/workflow%20Screenshot/9.Add%20New%20Sweet.png)
+Form for admins to add new products to the inventory with details like image, price, and category.
+
+### 9. Admin Profile Page
+![Admin Profile Page](frontend/public/workflow%20Screenshot/10.Admin%20Profile%20Page.png)
+Profile management section for administrators to update their personal information.
+
+### 10. User Shopping Experience
+![User Shopping Page](frontend/public/workflow%20Screenshot/11.Users%20Shopping%20Page.png)
+Demonstration of the user interaction flow while browsing and selecting sweets.
+
+### 11. Cart Checkout Page
+![Cart Checkout Page](frontend/public/workflow%20Screenshot/12.Cart%20Checkout%20Page.png)
+The shopping cart view where users can review items, adjust quantities, and proceed to checkout.
+
+### 12. Stripe Payment Gateway
+![Stripe Payment Gateway](frontend/public/workflow%20Screenshot/13.Stripe%20Payment%20Gateway.png)
+Secure payment processing interface integrated with Stripe for safe transactions.
+
+### 13. Payment Success Page
+![Payment Success Page](frontend/public/workflow%20Screenshot/14.Payment%20Success%20Page.png)
+Confirmation screen displayed after a successful transaction, providing order assurance.
+
+### 14. View Orders Page
+![View Orders Page](frontend/public/workflow%20Screenshot/15.View%20Orders%20Page.png)
+Order history section for users to track their past purchases and status.
+
+### 15. User Profile Page
+![User Profile Page](frontend/public/workflow%20Screenshot/16,User%20Profile%20Page.png)
+Personal profile area for customers to manage their account details and settings.
+
 ## My AI Usage
 Artificial Intelligence was used as a development assistant to accelerate and improve productivity during this project. The core design decisions, business logic, and feature implementation were done manually, while AI was used for support in the following areas:
 
