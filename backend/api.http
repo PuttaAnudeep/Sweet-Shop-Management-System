@@ -3,6 +3,7 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
+  "name": "Customer User",
   "email": "customer@example.com",
   "password": "password123",
   "role": "customer"
@@ -13,6 +14,7 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
+  "name": "Admin User",
   "email": "admin_v2@example.com",
   "password": "adminpassword123",
   "role": "admin"
@@ -24,8 +26,8 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "admin_v2@example.com",
-  "password": "adminpassword123"
+  "email": "admin@example.com",
+  "password": "password123"
 }
 ### Login Customer
 # @name loginCustomer
@@ -75,12 +77,12 @@ GET http://localhost:5000/api/sweets?category=Bengali
 ### Delete Sweet (Admin Only)
 # Replace 'sweet_id_here' with an actual ID from the List response
 # @name deleteSweet
-DELETE http://localhost:5000/api/sweets/693daddd534df4558ca3e5b4
+DELETE http://localhost:5000/api/sweets/
 Authorization: Bearer {{loginAdmin.response.body.token}}
 
 ### Update Sweet (Admin Only)
 # Replace 'sweet_id_here' with an actual ID from the List response
-PUT http://localhost:5000/api/sweets/693daddd534df4558ca3e5b4
+PUT http://localhost:5000/api/sweets/693e7bc94e560e2660cb4eb1
 Authorization: Bearer {{loginAdmin.response.body.token}}
 Content-Type: application/json
 
@@ -96,7 +98,7 @@ Authorization: Bearer {{loginAdmin.response.body.token}}
 Content-Type: application/json
 
 {
-  "sweetId": "693daddd534df4558ca3e5b4",
+  "sweetId": "693e7bc94e560e2660cb4eb1",
   "quantity": 100,
   "costPrice": 5,
   "supplier": "Cocoa Wholesale Ltd"
@@ -104,7 +106,7 @@ Content-Type: application/json
 
 ### Verify Stock Update (Get Sweet Details)
 # Use the same sweetId as above to check if quantity increased
-GET http://localhost:5000/api/sweets?search=693daddd534df4558ca3e5b4
+GET http://localhost:5000/api/sweets?search=693e7bc94e560e2660cb4eb1
 # GET http://localhost:5000/api/sweets
 
 ### Add to Cart (Customer)
@@ -113,8 +115,8 @@ Authorization: Bearer {{loginCustomer.response.body.token}}
 Content-Type: application/json
 
 {
-  "sweetId": "693da762505fd5e4ca991105",
-  "quantity": 6
+  "sweetId": "693e7bc94e560e2660cb4eb1",
+  "quantity": 1
 }
 
 ### Get Cart (Customer)
@@ -123,7 +125,7 @@ Authorization: Bearer {{loginCustomer.response.body.token}}
 
 ### Remove from Cart (Customer)
 # Replace sweetId with actual ID from Get Cart response
-DELETE http://localhost:5000/api/cart/693daddd534df4558ca3e5b4
+DELETE http://localhost:5000/api/cart/693e7bc94e560e2660cb4eb1
 Authorization: Bearer {{loginCustomer.response.body.token}}
 
 ### Place Order (Direct - No Payment)

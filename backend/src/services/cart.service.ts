@@ -3,7 +3,7 @@ import Sweet from '../models/Sweet';
 
 export class CartService {
     async getCart(userId: string) {
-        let cart = await Cart.findOne({ userId });
+        let cart = await Cart.findOne({ userId }).populate('items.sweetId');
         if (!cart) {
             cart = new Cart({ userId, items: [] });
             await cart.save();
@@ -56,7 +56,8 @@ export class CartService {
             cart.items.push(item);
         }
 
-        return await cart.save();
+        await cart.save();
+        return await this.getCart(userId); // Return populated cart
     }
 
     async removeFromCart(userId: string, sweetId: string) {
@@ -76,6 +77,7 @@ export class CartService {
             throw error;
         }
 
-        return await cart.save();
+        await cart.save();
+        return await this.getCart(userId); // Return populated cart
     }
 }
