@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
-import User from './src/models/User'; // Adjust path if necessary
-import Sweet from './src/models/Sweet'; // Adjust path if necessary
+import User from './backend/src/models/User'; // Adjust path if necessary
+import Sweet from './backend/src/models/Sweet'; // Adjust path if necessary
 import bcrypt from 'bcrypt';
 
 // Load environment variables
