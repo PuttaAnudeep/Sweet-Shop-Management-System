@@ -107,7 +107,8 @@ note:use stripe test card details(for payment through stripe)
 
 ## Application Demo Video:
     use this link to view the demo video:
-    **link:https://drive.google.com/file/d/1NsyjOotPY786WiT21Ddj273y2IZQ3h4J/view?usp=sharing**
+    **link:
+https://drive.google.com/file/d/1NsyjOotPY786WiT21Ddj273y2IZQ3h4J/view?usp=sharing**
 
 ## Application WorkFlow Screenshots:
 
