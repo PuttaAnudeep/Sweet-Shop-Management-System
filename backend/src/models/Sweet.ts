@@ -7,6 +7,12 @@ export interface ISweet extends Document {
     quantity: number;
     description?: string;
     image?: string;
+    comments: {
+        user: string; // User ID
+        username: string;
+        text: string;
+        createdAt: Date;
+    }[];
 }
 
 const SweetSchema: Schema = new Schema({
@@ -15,7 +21,13 @@ const SweetSchema: Schema = new Schema({
     price: { type: Number, required: true, min: 0 },
     quantity: { type: Number, required: true, min: 0 },
     description: { type: String },
-    image: { type: String }
+    image: { type: String },
+    comments: [{
+        user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+        username: { type: String, required: true },
+        text: { type: String, required: true },
+        createdAt: { type: Date, default: Date.now }
+    }]
 }, { timestamps: true });
 
 export default mongoose.model<ISweet>('Sweet', SweetSchema);

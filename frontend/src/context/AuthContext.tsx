@@ -1,11 +1,11 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import api from '../services/api';
+import React, { createContext, useContext, useState } from 'react';
 
 interface User {
     _id: string;
     email: string;
     name: string;
     role: string;
+    favorites?: string[]; // Array of sweet IDs
 }
 
 interface AuthContextType {
@@ -19,7 +19,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(() => {
         const storedUser = localStorage.getItem('user');
         return storedUser ? JSON.parse(storedUser) : null;

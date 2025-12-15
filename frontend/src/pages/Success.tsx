@@ -24,8 +24,9 @@ const Success = () => {
             refreshCart(); // Clear cart in context (backend already cleared it)
         } catch (error) {
             console.error('Order confirmation failed', error);
-            // toast.error('Something went wrong confirming your order.'); 
-            // Note: Even if this call fails (e.g. duplicate), order might be safe.
+            const message = (error as any).response?.data?.message || 'Something went wrong confirming your order.';
+            // Only show toast if it's not a "success" error (which shouldn't happen with 200) -> logic handled by catch
+            toast.error(message);
         }
     };
 

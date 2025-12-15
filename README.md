@@ -14,6 +14,8 @@ and clean code practices by committing to the best practices of software develop
 -   **User Interface**: Customers can browse sweets with filtering and search capabilities.
 -   **Shopping Cart**: Add items to cart and manage quantities.
 -   **Payment Integration**: Secure payment processing using Stripe.
+-   **Favorites List**: Customers can save their favorite sweets for easy access.
+-   **Customer Reviews**: Customers can write commments for sweets to share their feedback.
 -   **Responsive Design**: A beautiful, responsive UI built with Tailwind CSS.
 
 ## Tech Stack
@@ -58,16 +60,17 @@ Clone the repository to your local machine.
     ```
     The server should start on `http://localhost:5000`.
 
-note:use stripe test card details(for payment through stripe)
-**card number:** 4242 4242 4242 4242
-**exp month:** 12
-**exp year:** 34
-**cvc:** 567
-**Name on card:Zhang San**
-**Country:United States**
-**City:New York**
-**Address:123 Main St**
-**Postal Code:12345**
+> **Note:** Use the following Stripe test card details for payment through Stripe:
+
+-   **Card Number:** 4242 4242 4242 4242
+-   **Exp Month:** 12
+-   **Exp Year:** 34
+-   **CVC:** 567
+-   **Name on Card:** Zhang San
+-   **Country:** United States
+-   **City:** New York
+-   **Address:** 123 Main St
+-   **Postal Code:** 12345
 
 ### 3. Frontend Setup
 
@@ -89,7 +92,7 @@ note:use stripe test card details(for payment through stripe)
     ```
     The application will be accessible at `http://localhost:5173`.
 
-## Usage
+## Usage my accounts:(for better understanding)
     
 -   **Admin Account**: Register a new account with admin role
     *   Use my Account for Admin Login:
@@ -102,14 +105,12 @@ note:use stripe test card details(for payment through stripe)
     *   **password: password123**
 
 ## My Test reports:
-    use this link to view the test reports:
-    **link:**
-https://docs.google.com/document/d/1yuCL1ug_SP6zcpjl5CNbjxUA86zlAJIJosik73OBY9s/edit?usp=sharing 
+    Use this link to view the test reports:
+    **link:** [https://docs.google.com/document/d/1yuCL1ug_SP6zcpjl5CNbjxUA86zlAJIJosik73OBY9s/edit?usp=sharing](https://docs.google.com/document/d/1yuCL1ug_SP6zcpjl5CNbjxUA86zlAJIJosik73OBY9s/edit?usp=sharing)
 
 ## Application Demo Video:
-    use this link to view the demo video:
-    **link:**
-https://drive.google.com/file/d/1NsyjOotPY786WiT21Ddj273y2IZQ3h4J/view?usp=sharing 
+    Use this link to view the demo video:
+    **link:** [https://drive.google.com/file/d/1NsyjOotPY786WiT21Ddj273y2IZQ3h4J/view?usp=sharing](https://drive.google.com/file/d/1NsyjOotPY786WiT21Ddj273y2IZQ3h4J/view?usp=sharing) 
 
 ## Application WorkFlow Screenshots:
 
@@ -153,24 +154,32 @@ Profile management section for administrators to update their personal informati
 ![User Shopping Page](frontend/public/workflow%20Screenshot/11.Users%20Shopping%20Page.png)
 Demonstration of the user interaction flow while browsing and selecting sweets.
 
-### 11. Cart Checkout Page
-![Cart Checkout Page](frontend/public/workflow%20Screenshot/12.Cart%20Checkout%20Page.png)
+### 11. Favorite Page
+![Favorite Page](frontend/public/workflow%20Screenshot/12.Favorite%20Page.png)
+A dedicated page for users to save and view their favorite sweets for quick access.
+
+### 12. Customer Reviews
+![Customer Reviews](frontend/public/workflow%20Screenshot/13.Customer%20Reviews.png)
+Section displaying customer feedback and reviews to build trust and credibility.
+
+### 13. Cart Checkout Page
+![Cart Checkout Page](frontend/public/workflow%20Screenshot/14.Cart%20Checkout%20Page.png)
 The shopping cart view where users can review items, adjust quantities, and proceed to checkout.
 
-### 12. Stripe Payment Gateway
-![Stripe Payment Gateway](frontend/public/workflow%20Screenshot/13.Stripe%20Payment%20Gateway.png)
+### 14. Stripe Payment Gateway
+![Stripe Payment Gateway](frontend/public/workflow%20Screenshot/15.Stripe%20Payment%20Gateway.png)
 Secure payment processing interface integrated with Stripe for safe transactions.
 
-### 13. Payment Success Page
-![Payment Success Page](frontend/public/workflow%20Screenshot/14.Payment%20Success%20Page.png)
+### 15. Payment Success Page
+![Payment Success Page](frontend/public/workflow%20Screenshot/16.Payment%20Success%20Page.png)
 Confirmation screen displayed after a successful transaction, providing order assurance.
 
-### 14. View Orders Page
-![View Orders Page](frontend/public/workflow%20Screenshot/15.View%20Orders%20Page.png)
+### 16. View Orders Page
+![View Orders Page](frontend/public/workflow%20Screenshot/17.View%20Orders%20Page.png)
 Order history section for users to track their past purchases and status.
 
-### 15. User Profile Page
-![User Profile Page](frontend/public/workflow%20Screenshot/16,User%20Profile%20Page.png)
+### 17. User Profile Page
+![User Profile Page](frontend/public/workflow%20Screenshot/18,User%20Profile%20Page.png)
 Personal profile area for customers to manage their account details and settings.
 
 ## My AI Usage

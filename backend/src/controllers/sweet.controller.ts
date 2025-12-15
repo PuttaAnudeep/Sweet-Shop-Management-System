@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { SweetService } from '../services/sweet.service';
+import User from '../models/User';
 
 const sweetService = new SweetService();
 
@@ -55,6 +56,43 @@ export const updateSweet = async (req: Request, res: Response, next: NextFunctio
             error.statusCode = 404;
             throw error;
         }
+        res.status(200).json(sweet);
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const addComment = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { text } = req.body;
+        const user = (req as any).user;
+
+        if (!text) {
+            const error: any = new Error('Comment text is required');
+            error.statusCode = 400;
+            throw error;
+        }
+
+        const userDetails = await User.findById(user.id);
+        if (!userDetails) {
+            const error: any = new Error('User not found');
+            error.statusCode = 404;
+            throw error;
+        }
+
+        const comment = {
+            user: user.id,
+            username: userDetails.name,
+            text
+        };
+
+        const sweet = await sweetService.addComment(req.params.id, comment);
+        if (!sweet) {
+            const error: any = new Error('Sweet not found');
+            error.statusCode = 404;
+            throw error;
+        }
+
         res.status(200).json(sweet);
     } catch (error) {
         next(error);

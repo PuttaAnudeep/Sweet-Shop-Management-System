@@ -51,4 +51,12 @@ export class SweetService {
     async update(id: string, data: Partial<ISweet>) {
         return await Sweet.findByIdAndUpdate(id, data, { new: true });
     }
+
+    async addComment(id: string, comment: any) {
+        return await Sweet.findByIdAndUpdate(
+            id,
+            { $push: { comments: comment } },
+            { new: true }
+        );
+    }
 }

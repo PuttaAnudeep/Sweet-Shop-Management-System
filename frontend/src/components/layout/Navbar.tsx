@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FiShoppingBag } from 'react-icons/fi';
+import { FiShoppingBag, FiHeart } from 'react-icons/fi';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 
@@ -36,14 +36,19 @@ const Navbar = () => {
                 <div className="flex items-center gap-6">
 
                     {isAuthenticated && user?.role !== 'admin' && (
-                        <Link to="/cart" className="hover:text-gold-500 transition-colors relative">
-                            <FiShoppingBag size={22} />
-                            {cartItems.length > 0 && (
-                                <span className="absolute -top-1 -right-1 bg-gold-400 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
-                                    {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
-                                </span>
-                            )}
-                        </Link>
+                        <div className="flex items-center gap-4">
+                            <Link to="/favorites" className="hover:text-gold-500 transition-colors relative" title="My Favorites">
+                                <FiHeart size={22} />
+                            </Link>
+                            <Link to="/cart" className="hover:text-gold-500 transition-colors relative">
+                                <FiShoppingBag size={22} />
+                                {cartItems.length > 0 && (
+                                    <span className="absolute -top-1 -right-1 bg-gold-400 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
+                                        {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
+                                    </span>
+                                )}
+                            </Link>
+                        </div>
                     )}
 
                     {isAuthenticated ? (
@@ -60,10 +65,12 @@ const Navbar = () => {
                                     </Link>
                                 </div>
                             ) : (
-                                <Link to="/orders" className="hover:text-gold-500 transition-colors font-medium relative group">
-                                    Orders
-                                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold-500 transition-all group-hover:w-full"></span>
-                                </Link>
+                                <>
+                                    <Link to="/orders" className="hover:text-gold-500 transition-colors font-medium relative group">
+                                        Orders
+                                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold-500 transition-all group-hover:w-full"></span>
+                                    </Link>
+                                </>
                             )}
 
                             <div className="flex items-center gap-4 border-l border-chocolate-200 pl-6 ml-2">

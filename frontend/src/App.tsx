@@ -12,8 +12,10 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 
 import Inventory from './pages/Admin/Inventory';
+import Favorites from './pages/Favorites';
+import SweetDetails from './pages/SweetDetails';
 
-import React from 'react';
+
 import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './components/layout/ProtectedRoute';
 
@@ -35,12 +37,14 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/success" element={<Success />} />
+          <Route path="/product/:id" element={<SweetDetails />} />
           <Route element={<ProtectedRoute adminOnly />}>
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/inventory" element={<Inventory />} />
           </Route>
           <Route element={<ProtectedRoute />}>
             <Route path="/orders" element={<Orders />} />
+            <Route path="/favorites" element={<Favorites />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
           {/* We will add more routes later */}

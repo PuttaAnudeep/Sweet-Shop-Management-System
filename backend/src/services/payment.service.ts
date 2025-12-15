@@ -72,6 +72,7 @@ export class PaymentService {
             }
 
             // Creating the order using existing OrderService logic
+
             // Note: OrderService.createOrder deduces stock and clears cart.
             // We should ideally ensure this is idempotent or check if order already exists for this session.
             // For now, we assume one-time success call per session.
@@ -79,6 +80,12 @@ export class PaymentService {
 
             // We need to modify OrderService or Order model to store paymentId if we want to track it.
             // I'll update OrderService to accept paymentId optional param.
+
+            // Idempotency check: Check if order already exists for this session
+            const existingOrder = await Order.findOne({ paymentId: sessionId });
+            if (existingOrder) {
+                return existingOrder;
+            }
 
             const order = await this.orderService.createOrder(userId, sessionId);
             return order;

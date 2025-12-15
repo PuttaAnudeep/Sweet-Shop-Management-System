@@ -30,6 +30,7 @@ app.use(cors());
 app.use(express.json());
 
 import adminRoutes from './routes/admin.routes';
+import userRoutes from './routes/user.routes';
 
 app.use('/api/auth', authRoutes);
 app.use('/api/sweets', sweetRoutes);
@@ -37,6 +38,7 @@ app.use('/api/inventory', inventoryRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/users', userRoutes);
 
 app.use(errorHandler);
 
