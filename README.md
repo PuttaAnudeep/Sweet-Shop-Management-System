@@ -105,12 +105,12 @@ Clone the repository to your local machine.
     *   **password: password123**
 
 ## My Test reports:
-    Use this link to view the test reports:
-    **link:** [https://docs.google.com/document/d/1yuCL1ug_SP6zcpjl5CNbjxUA86zlAJIJosik73OBY9s/edit?usp=sharing](https://docs.google.com/document/d/1yuCL1ug_SP6zcpjl5CNbjxUA86zlAJIJosik73OBY9s/edit?usp=sharing)
+Use this link to view the test reports:
+**link:** [https://docs.google.com/document/d/1yuCL1ug_SP6zcpjl5CNbjxUA86zlAJIJosik73OBY9s/edit?usp=sharing](https://docs.google.com/document/d/1yuCL1ug_SP6zcpjl5CNbjxUA86zlAJIJosik73OBY9s/edit?usp=sharing)
 
 ## Application Demo Video:
-    Use this link to view the demo video:
-    **link:** [https://drive.google.com/file/d/1NsyjOotPY786WiT21Ddj273y2IZQ3h4J/view?usp=sharing](https://drive.google.com/file/d/1NsyjOotPY786WiT21Ddj273y2IZQ3h4J/view?usp=sharing) 
+Use this link to view the demo video:
+**link:** [https://drive.google.com/file/d/1NsyjOotPY786WiT21Ddj273y2IZQ3h4J/view?usp=sharing](https://drive.google.com/file/d/1NsyjOotPY786WiT21Ddj273y2IZQ3h4J/view?usp=sharing) 
 
 ## Application WorkFlow Screenshots:
 
