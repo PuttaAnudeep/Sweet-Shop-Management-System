@@ -183,13 +183,14 @@ Order history section for users to track their past purchases and status.
 Personal profile area for customers to manage their account details and settings.
 
 ## My AI Usage
-Artificial Intelligence was used as a development assistant to accelerate and improve productivity during this project. The core design decisions, business logic, and feature implementation were done manually, while AI was used for support in the following areas:
 
-*   **Project Scaffolding**: Assisted in generating the initial folder structure and configuration for the Vite + React frontend and the Express + TypeScript backend.
-*   **UI/UX Design Support**: Helped design responsive Navbar and Footer, and complex layouts such as the Hero section and dashboard tables.
-*   **Reusable Component Structure**: Provided syntax and structural guidance for reusable components like ProductCard, Modal, and the AuthContext provider, which were then customized and integrated manually.
-*   **Debugging Assistance**: Helped identify and resolve issues related to relative import paths, API integration, and TypeScript type mismatches.
-*   **Feature Implementation Support**: Assisted with logic suggestions for pagination on the Shop page and inventory restock handling on the backend, while validation and integration were completed manually.
-*   **Refactoring and Code Cleanup**: Helped convert plain CSS into Tailwind CSS utility classes and identify unused or redundant code.
+I used Artificial Intelligence to accelerate the development of this project. Specifically, AI assisted with:
 
-AI was used strictly as a support tool, similar to documentation or Stack Overflow, enabling rapid prototyping and efficient implementation of features such as role-based authentication and dynamic data fetching, while ensuring full understanding and control over the final codebase.
+1.  **Project Scaffolding**: Generating the initial directory structure and configuration for both the Vite React frontend and the Express backend.
+2.  **UI/UX Design**: Creating the "Chocolate & Gold" color theme, designing the responsive Navbar and Footer, and implementing complex layouts like the Hero section and Dashboard tables.
+3.  **Component Implementation**: Writing the code for reusable components such as `ProductCard`, `Modal`, and the `AuthContext` provider.
+4.  **Debugging**: Identifying and resolving errors related to relative import paths, API integration issues, and TypeScript type definitions.
+5.  **Feature Logic**: Implementing the pagination logic for the Shop page and the inventory restock functionality on the backend.
+6.  **Refactoring**: converting simple CSS to Tailwind classes and cleaning up unused code.
+
+The use of AI allowed me for rapid prototyping and implementation of advanced features like role-based authentication and dynamic data fetching in a short amount of time
